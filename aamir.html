@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Project</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            position: relative;
+            color: #fff;
+            background-color: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        header {
+            width: 100%;
+            height: auto;
+            background-color: black;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding: 10px;
+        }
+        #header-text {
+            font-size: 2em;
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 10px auto;
+            text-align: center;
+        }
+
+        .photo-container {
+            margin: 20px auto;
+            overflow: hidden;
+            position: relative;
+            display: inline-block;
+            border: 10px solid #fff;
+            border-radius: 15px;
+            padding: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            transition: box-shadow 0.5s, transform 2s;
+            text-align: center; /* Center photo horizontally */
+        }
+
+        #photo {
+            width: 100%;
+            max-width: 300px; /* Max width for larger screens */
+            height: auto; /* Maintain aspect ratio */
+            border: 10px solid #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #fff, 0 0 20px #fff;
+            object-fit: cover;
+            transition: transform 1s ease-in-out;
+        }
+        #play-button {
+            display: block;
+            margin: 20px auto;
+            padding: 15px 32px;
+            font-size: 1.2em;
+            color: white;
+            background-color: green;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        #play-button:hover {
+            background-color: #00ff00;
+            box-shadow: 0 0 10px #00ff00;
+        }
+
+        /* ANIMATIONS */
+        @keyframes floating {
+            0% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        @keyframes swing {
+            0% {
+                transform: rotate(-5deg);
+            }
+            100% {
+                transform: rotate(5deg);
+            }
+        }
+        @keyframes dj-blush {
+            0% { opacity: 0.3; background: radial-gradient(circle, rgba(255,0,0,0.3) 0%, rgba(255,0,0,0) 50%); }
+            20% { opacity: 0.6; background: radial-gradient(circle, rgba(0,255,0,0.3) 0%, rgba(0,255,0,0) 50%); }
+            40% { opacity: 0.3; background: radial-gradient(circle, rgba(0,0,255,0.3) 0%, rgba(0,0,255,0) 50%); }
+            60% { opacity: 0.6; background: radial-gradient(circle, rgba(255,255,0,0.3) 0%, rgba(255,255,0,0) 50%); }
+            80% { opacity: 0.3; background: radial-gradient(circle, rgba(255,0,255,0.3) 0%, rgba(255,0,255,0) 50%); }
+            100% { opacity: 0.6; background: radial-gradient(circle, rgba(0,255,255,0.3) 0%, rgba(0,255,255,0) 50%); }
+        }
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes blush {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+        @keyframes zoom {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        @keyframes dj-light {
+            0% { border-color: red; }
+            25% { border-color: yellow; }
+            50% { border-color: blue; }
+            75% { border-color: green; }
+            100% { border-color: red; }
+        }
+          
+        .dj-light-border {
+            border-width: 10px;
+            border-style: solid;
+            animation: dj-light 1s infinite;
+          }
+
+        /*RESPONSIVE DESIGN*/
+        @media (max-width: 768px) {
+            #header-text {
+                font-size: 2.5em;
+            }
+            .photo-container {
+                width: 90%;
+                padding: 5px;
+            }
+            #play-button {
+                font-size: 1em;
+                padding: 8px 16px;
+            }
+        }
+        @media (max-width: 480px) {
+            #header-text {
+                font-size: 1.2em;
+            }
+            .photo-container {
+                width: 90%;
+                padding: 5px;
+            }
+            #play-button {
+                font-size: 0.9em;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="header-text">AAMIR !</h1>
+    </header>
+    <div class="container">
+        <div class="photo-container" id="main-container">
+            <img src="aamir.jpg" alt="Your Image" id="photo">
+        </div>
+        <br>
+        <button id="play-button" onclick="playAudio()">Click Here For Magic</button>
+    </div>
+
+    <script>
+        document.getElementById('play-button').addEventListener('click', function() {
+            // Apply header animations
+            document.querySelector('header').style.background = 'linear-gradient(90deg, #ff69b4, #333, #0066ff)';
+            document.getElementById('header-text').style.color = '#ffea00';
+            document.getElementById('header-text').style.animation = 'floating 2s ease-in-out infinite';
+            
+            // Get the main container div by its ID
+            const mainContainer = document.getElementById('main-container');
+            
+            // Add the dj-light-border class to apply the effect
+            mainContainer.classList.add('dj-light-border');
+            
+            // Apply multiple animations using the style property
+            photo.style.animation = 'blink 1s linear infinite, zoom 1s infinite';
+            
+            // You cannot combine animations like this in the border-image property. 
+            // If you want a gradient effect on the border, you can use border-image with a gradient.
+            photo.style.borderImage = 'linear-gradient(45deg, red, orange, yellow, green, blue) 1';
+            
+            // Add another class for the blush effect
+            photo.classList.add("dj-blush");
+            
+            // Apply button neon effect
+            document.querySelector('button').style.backgroundColor = '#00ff00';
+            document.querySelector('button').style.boxShadow = '0 0 10px #00ff00';
+            document.getElementById('play-button').style.animation = 'colorChange 1s infinite alternate';
+
+            // Add background sound
+            const audio = new Audio('aamir.mp3');
+            audio.loop = true;
+            audio.play()
+        });
+    </script>
+</body>
+</html>
